@@ -1,0 +1,657 @@
+Girlytails · HTML
+Copy
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Girly Tails 🍹</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+ 
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #1a0010;
+      color: white;
+      min-height: 100vh;
+    }
+ 
+    /* ── NAV ── */
+    nav {
+      background: linear-gradient(to right, #1a0010, #3d0025);
+      border-bottom: 2px solid gold;
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+ 
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: gold;
+      text-shadow: 0 0 10px rgba(255,215,0,0.4);
+    }
+ 
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+ 
+    .nav-links a {
+      color: #ffb3d9;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+      transition: color 0.3s;
+    }
+ 
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: gold;
+    }
+ 
+    /* ── PAGES ── */
+    .page { display: none; animation: fadeIn 0.5s ease; }
+    .page.active { display: block; }
+ 
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+ 
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 80px 20px 60px;
+      background: linear-gradient(to bottom, #3d0025, #1a0010);
+      position: relative;
+      overflow: hidden;
+    }
+ 
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(ellipse at center, rgba(255,215,0,0.05) 0%, transparent 60%);
+      animation: pulse 4s ease infinite alternate;
+    }
+ 
+    @keyframes pulse {
+      from { transform: scale(0.9); }
+      to   { transform: scale(1.1); }
+    }
+ 
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      color: gold;
+      text-shadow: 0 0 30px rgba(255,215,0,0.5);
+      margin-bottom: 16px;
+      position: relative;
+    }
+ 
+    .hero p {
+      font-size: 18px;
+      color: #ffb3d9;
+      max-width: 500px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+      position: relative;
+    }
+ 
+    .hero-btn {
+      background: linear-gradient(to right, #ff0080, #ff69b4);
+      color: white;
+      border: none;
+      padding: 16px 36px;
+      border-radius: 30px;
+      font-size: 17px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(255,0,128,0.4);
+      transition: all 0.3s;
+      position: relative;
+    }
+ 
+    .hero-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(255,0,128,0.5);
+    }
+ 
+    /* ── SECTION TITLES ── */
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      color: gold;
+      text-align: center;
+      margin: 50px 0 10px;
+      text-shadow: 0 0 15px rgba(255,215,0,0.3);
+    }
+ 
+    .section-sub {
+      text-align: center;
+      color: #ffb3d9;
+      font-size: 15px;
+      margin-bottom: 36px;
+    }
+ 
+    /* ── FEATURES ── */
+    .features {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      padding: 40px 40px 60px;
+    }
+ 
+    .feature-card {
+      background: linear-gradient(135deg, #2d0018, #3d0025);
+      border: 1.5px solid gold;
+      border-radius: 20px;
+      padding: 30px 24px;
+      width: 220px;
+      text-align: center;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+ 
+    .feature-card:hover { transform: translateY(-6px); }
+ 
+    .feature-icon {
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+ 
+    .feature-card h3 {
+      font-family: 'Playfair Display', serif;
+      color: gold;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+ 
+    .feature-card p {
+      color: #ffb3d9;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+ 
+    /* ── DRINKS ── */
+    .drinks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      padding: 0 40px 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+ 
+    .drink-card {
+      background: linear-gradient(135deg, #2d0018, #3d0025);
+      border: 1.5px solid gold;
+      border-radius: 20px;
+      padding: 28px 24px;
+      transition: transform 0.3s;
+    }
+ 
+    .drink-card:hover { transform: translateY(-4px); }
+ 
+    .drink-emoji {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+ 
+    .drink-card h3 {
+      font-family: 'Playfair Display', serif;
+      color: gold;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+ 
+    .drink-card p {
+      color: #ffb3d9;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+ 
+    .drink-tag {
+      display: inline-block;
+      background: rgba(255,215,0,0.15);
+      border: 1px solid gold;
+      color: gold;
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-top: 12px;
+      font-weight: 700;
+    }
+ 
+    /* Add your own drink placeholder */
+    .drink-card.add-yours {
+      border: 2px dashed rgba(255,215,0,0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 200px;
+      opacity: 0.6;
+    }
+ 
+    .drink-card.add-yours h3 { color: #ffb3d9; }
+ 
+    /* ── GAMES ── */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      padding: 0 40px 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+ 
+    .game-card {
+      background: linear-gradient(135deg, #2d0018, #3d0025);
+      border: 1.5px solid gold;
+      border-radius: 20px;
+      padding: 28px 24px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+ 
+    .game-card:hover { transform: translateY(-4px); }
+ 
+    .game-emoji { font-size: 36px; margin-bottom: 12px; }
+ 
+    .game-card h3 {
+      font-family: 'Playfair Display', serif;
+      color: gold;
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+ 
+    .game-card .game-desc {
+      color: #ffb3d9;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+ 
+    .see-rules-btn {
+      background: linear-gradient(to right, #ff0080, #ff69b4);
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+ 
+    .see-rules-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(255,0,128,0.4);
+    }
+ 
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 200;
+      justify-content: center;
+      align-items: center;
+    }
+ 
+    .modal-overlay.open { display: flex; }
+ 
+    .modal {
+      background: linear-gradient(135deg, #2d0018, #3d0025);
+      border: 2px solid gold;
+      border-radius: 24px;
+      padding: 36px;
+      max-width: 480px;
+      width: 90%;
+      position: relative;
+      animation: popIn 0.3s ease;
+    }
+ 
+    @keyframes popIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+ 
+    .modal h2 {
+      font-family: 'Playfair Display', serif;
+      color: gold;
+      font-size: 26px;
+      margin-bottom: 16px;
+    }
+ 
+    .modal p, .modal li {
+      color: #ffb3d9;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+ 
+    .modal ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+ 
+    .modal-close {
+      position: absolute;
+      top: 14px; right: 18px;
+      background: none;
+      border: none;
+      color: gold;
+      font-size: 22px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+ 
+    /* ── ABOUT ── */
+    .about-section {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 40px 40px 60px;
+      text-align: center;
+    }
+ 
+    .about-section p {
+      color: #ffb3d9;
+      font-size: 16px;
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
+ 
+    .about-divider {
+      border: none;
+      border-top: 1px solid rgba(255,215,0,0.3);
+      margin: 30px 0;
+    }
+ 
+    .about-section h3 {
+      font-family: 'Playfair Display', serif;
+      color: gold;
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+ 
+    /* ── FOOTER ── */
+    footer {
+      background: linear-gradient(to right, #1a0010, #3d0025);
+      border-top: 2px solid gold;
+      text-align: center;
+      padding: 24px;
+      color: #ffb3d9;
+      font-size: 14px;
+    }
+ 
+    footer span { color: gold; }
+ 
+    /* ── DISCLAIMER BANNER ── */
+    .disclaimer {
+      background: rgba(255,215,0,0.08);
+      border-top: 1px solid rgba(255,215,0,0.2);
+      border-bottom: 1px solid rgba(255,215,0,0.2);
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 13px;
+      color: rgba(255,179,217,0.7);
+    }
+ 
+  </style>
+</head>
+<body>
+ 
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">🍹 Girly Tails</div>
+    <ul class="nav-links">
+      <li><a href="#" class="active" onclick="showPage('home', this)">Home</a></li>
+      <li><a href="#" onclick="showPage('drinks', this)">Cocktails</a></li>
+      <li><a href="#" onclick="showPage('games', this)">Games</a></li>
+      <li><a href="#" onclick="showPage('about', this)">About</a></li>
+    </ul>
+  </nav>
+ 
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">🔞 This site is intended for adults only. Please drink responsibly. Never drink and drive.</div>
+ 
+  <!-- ── HOME PAGE ── -->
+  <div id="home" class="page active">
+ 
+    <div class="hero">
+      <h1>Girly Tails 🍹</h1>
+      <p>Fresh drinks, fun games and good vibes. Your go-to guide for a girly night in.</p>
+      <button class="hero-btn" onclick="showPage('drinks', document.querySelector('.nav-links a:nth-child(2)'))">Explore Cocktails ✨</button>
+    </div>
+ 
+    <h2 class="section-title">What's Inside</h2>
+    <p class="section-sub">Everything you need for the perfect night</p>
+ 
+    <div class="features">
+      <div class="feature-card" onclick="showPage('drinks', null)">
+        <div class="feature-icon">🍹</div>
+        <h3>Cocktails</h3>
+        <p>Fresh and fun drinks for every taste and mood.</p>
+      </div>
+      <div class="feature-card" onclick="showPage('games', null)">
+        <div class="feature-icon">🎲</div>
+        <h3>Games</h3>
+        <p>Entertaining drinking games to play with friends.</p>
+      </div>
+      <div class="feature-card" onclick="showPage('about', null)">
+        <div class="feature-icon">💕</div>
+        <h3>About</h3>
+        <p>The story behind Girly Tails and who it's for.</p>
+      </div>
+    </div>
+ 
+  </div>
+ 
+  <!-- ── COCKTAILS PAGE ── -->
+  <div id="drinks" class="page">
+ 
+    <h2 class="section-title">🍹 Cocktails & Drinks</h2>
+    <p class="section-sub">Add your own drinks below — placeholders are ready for you!</p>
+ 
+    <div class="drinks-grid">
+ 
+      <!-- ADD YOUR OWN DRINKS HERE — replace the text inside each card -->
+ 
+      <div class="drink-card">
+        <div class="drink-emoji">🍓</div>
+        <h3>Cranberry Bomb</h3>
+        <p> grab a fish bowl; add ice and lemon. add100 ml vodka, 50ml cranberry juice, 150ml of lemonade, margarita syrup, dash of violet syrup and cranberry syrup. edible glitter can be added for a shine, mix well! </p>
+        <span class="drink-tag"> cranberry bomb is a quick starter drink! </span>
+      </div>
+ 
+      <div class="drink-card">
+        <div class="drink-emoji">🍋</div>
+        <h3> KAT on the beach</h3>
+        <p> single cups at the ready, add some cranberry, peach schnapps, margarita syrup, dash of vodka and pure orange juice, add some fruit and ice.</p>
+        <span class="drink-tag">Add a tag e.g. Refreshing</span>
+      </div>
+ 
+      <div class="drink-card">
+        <div class="drink-emoji">🌸</div>
+        <h3>pink surpise</h3>
+        <p>pink lemonade, guava rubicon and gin. make in singular cups or fish bowl, add ice if needed. add a strawberry. </p>
+        <span class="drink-tag">Add a tag e.g. Sweet</span>
+      </div>
+ 
+      <div class="drink-card">
+        <div class="drink-emoji">🍊</div>
+        <h3>Your Drink Name Here</h3>
+        <p>Add your drink description here. What's in it? What does it taste like? How is it made?</p>
+        <span class="drink-tag">Add a tag e.g. Tropical</span>
+      </div>
+ 
+      <div class="drink-card">
+        <div class="drink-emoji">🍇</div>
+        <h3>Your Drink Name Here</h3>
+        <p>Add your drink description here. What's in it? What does it taste like? How is it made?</p>
+        <span class="drink-tag">Add a tag e.g. Bold</span>
+      </div>
+ 
+      <div class="drink-card">
+        <div class="drink-emoji">🥂</div>
+        <h3>Your Drink Name Here</h3>
+        <p>Add your drink description here. What's in it? What does it taste like? How is it made?</p>
+        <span class="drink-tag">Add a tag e.g. Sparkling</span>
+      </div>
+ 
+      <!-- ADD MORE DRINKS BY COPYING ONE OF THE CARDS ABOVE -->
+      <div class="drink-card add-yours">
+        <div class="drink-emoji">➕</div>
+        <h3>Add Your Own</h3>
+        <p>Copy one of the cards above and paste your own drink details in.</p>
+      </div>
+ 
+    </div>
+  </div>
+ 
+  <!-- ── GAMES PAGE ── -->
+  <div id="games" class="page">
+ 
+    <h2 class="section-title">🎲 Drinking Games</h2>
+    <p class="section-sub">Click any game to see the rules — add your own games below!</p>
+ 
+    <div class="games-grid">
+ 
+      <!-- ADD YOUR OWN GAMES HERE — copy any card and update the onclick with your game name and rules -->
+ 
+      <div class="game-card">
+        <div class="game-emoji">👑</div>
+        <h3>Your Game Name Here</h3>
+        <p class="game-desc">Add a short description of the game here. What is it? How many players?</p>
+        <button class="see-rules-btn" onclick="showRules('Your Game Name Here', 'Add your game rules here. Step 1: ... Step 2: ... You can write as much as you like!')">See Rules</button>
+      </div>
+ 
+      <div class="game-card">
+        <div class="game-emoji">🃏</div>
+        <h3>Your Game Name Here</h3>
+        <p class="game-desc">Add a short description of the game here. What is it? How many players?</p>
+        <button class="see-rules-btn" onclick="showRules('Your Game Name Here', 'Add your game rules here.')">See Rules</button>
+      </div>
+ 
+      <div class="game-card">
+        <div class="game-emoji">🎯</div>
+        <h3>Your Game Name Here</h3>
+        <p class="game-desc">Add a short description of the game here. What is it? How many players?</p>
+        <button class="see-rules-btn" onclick="showRules('Your Game Name Here', 'Add your game rules here.')">See Rules</button>
+      </div>
+ 
+      <div class="game-card">
+        <div class="game-emoji">🎉</div>
+        <h3>Your Game Name Here</h3>
+        <p class="game-desc">Add a short description of the game here. What is it? How many players?</p>
+        <button class="see-rules-btn" onclick="showRules('Your Game Name Here', 'Add your game rules here.')">See Rules</button>
+      </div>
+ 
+      <div class="game-card">
+        <div class="game-emoji">💋</div>
+        <h3>Your Game Name Here</h3>
+        <p class="game-desc">Add a short description of the game here. What is it? How many players?</p>
+        <button class="see-rules-btn" onclick="showRules('Your Game Name Here', 'Add your game rules here.')">See Rules</button>
+      </div>
+ 
+      <div class="game-card">
+        <div class="game-emoji">🌟</div>
+        <h3>Your Game Name Here</h3>
+        <p class="game-desc">Add a short description of the game here. What is it? How many players?</p>
+        <button class="see-rules-btn" onclick="showRules('Your Game Name Here', 'Add your game rules here.')">See Rules</button>
+      </div>
+ 
+    </div>
+  </div>
+ 
+  <!-- ── ABOUT PAGE ── -->
+  <div id="about" class="page">
+ 
+    <h2 class="section-title">💕 About Girly Tails</h2>
+    <p class="section-sub">The story behind the site</p>
+ 
+    <div class="about-section">
+ 
+      <p>Welcome to Girly Tails — your go-to destination for fun cocktail ideas and entertaining drinking games for a girly night in. Whether you're hosting friends or just treating yourself, this is your space.</p>
+ 
+      <hr class="about-divider">
+ 
+      <h3>Our Drinks</h3>
+      <p>Add something here about your drinks — where did you come up with them? Are they your own recipes? What makes them special?</p>
+ 
+      <hr class="about-divider">
+ 
+      <h3>Our Games</h3>
+      <p>Add something here about your games — are they classics? Your own versions? What makes a great drinking game?</p>
+ 
+      <hr class="about-divider">
+ 
+      <h3>A Note on Drinking</h3>
+      <p>Girly Tails does not promote heavy drinking or underage drinking. Always drink responsibly, know your limits and look after each other. 💕</p>
+ 
+    </div>
+  </div>
+ 
+  <!-- ── MODAL ── -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <h2 id="modalTitle">Game Title</h2>
+      <p id="modalRules">Rules go here.</p>
+    </div>
+  </div>
+ 
+  <!-- FOOTER -->
+  <footer>
+    <p>Made with 💕 by <span>Girly Tails</span> — Drink responsibly. 18+ only.</p>
+  </footer>
+ 
+  <script>
+ 
+    // Show a page
+    function showPage(pageId, linkEl) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+      if (linkEl) linkEl.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+ 
+    // Show game rules modal
+    function showRules(title, rules) {
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalRules').textContent = rules;
+      document.getElementById('modalOverlay').classList.add('open');
+    }
+ 
+    // Close modal
+    function closeModal(event) {
+      if (!event || event.target === document.getElementById('modalOverlay')) {
+        document.getElementById('modalOverlay').classList.remove('open');
+      }
+    }
+ 
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+ 
+  </script>
+ 
+</body>
+</html>
